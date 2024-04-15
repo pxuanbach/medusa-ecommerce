@@ -1,0 +1,61 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:12
+    ports:
+      - "54322:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: medusa
+    volumes:
+      - app-db-data:/var/lib/postgresql/data:cached
+
+  redis:
+    image: redis
+    expose:
+      - 6379
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    # image: backend:test
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa
+      REDIS_URL: redis://redis
+      NODE_ENV: production
+      JWT_SECRET: some_jwt_secret
+      COOKIE_SECRET: some_cookie_secret
+      PORT: 9000
+      STORE_CORS: /http://.+/
+      ADMIN_CORS: /http://.+/
+      AUTH_CORS: /http://.+/
+    ports:
+      - "9000:9000"
+
+  admin:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.admin.prod
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "7001:80"
+
+
+  # storefront:
+  #   build:
+  #     context: ./storefront
+  #     dockerfile: Dockerfile
+  #   image: storefront:test
+  #   container_name: medusa-storefront
+  #   depends_on:
+  #     - backend
+
+volumes:
+  app-db-data:

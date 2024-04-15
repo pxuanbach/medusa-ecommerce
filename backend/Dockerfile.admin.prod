@@ -1,0 +1,28 @@
+FROM node:18-alpine3.16 as builder
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
+#   Copy medusa package.json and yarn.lock from 
+COPY ./package.json ./package-lock.json .
+COPY ./yarn.lock? .
+
+RUN yarn install --frozen-lockfile
+
+COPY . .
+
+RUN yarn build:admin:prod
+
+FROM nginx:1.16.0-alpine as runner
+
+COPY admin.nginx.conf /etc/nginx/conf.d/default.conf
+
+RUN apk add --no-cache bash
+
+EXPOSE 80 
+
+COPY --from=builder /app/build /usr/share/nginx/html
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
