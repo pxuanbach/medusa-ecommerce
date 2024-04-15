@@ -24,5 +24,8 @@ RUN yarn global add @medusajs/medusa-cli@latest
 #   Copy app source code
 COPY . /app
 
+# Rebuild admin
+RUN yarn build:admin
+
 #   Image entrypoint develop
 ENTRYPOINT ["/bin/sh", "./develop.sh", "develop"]

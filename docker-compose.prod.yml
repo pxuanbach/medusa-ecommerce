@@ -48,14 +48,14 @@ services:
       - "7001:80"
 
 
-  # storefront:
-  #   build:
-  #     context: ./storefront
-  #     dockerfile: Dockerfile
-  #   image: storefront:test
-  #   container_name: medusa-storefront
-  #   depends_on:
-  #     - backend
-
+  storefront:
+    build:
+      context: ./storefront
+      dockerfile: Dockerfile.prod
+    depends_on:
+      - backend
+    ports:
+      - "8000:8000"
+      
 volumes:
   app-db-data:

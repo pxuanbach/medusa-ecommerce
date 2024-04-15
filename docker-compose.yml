@@ -38,14 +38,16 @@ services:
       - "9000:9000"
       - "7001:7001"
 
-  # storefront:
-  #   build:
-  #     context: ./storefront
-  #     dockerfile: Dockerfile
-  #   image: storefront:test
-  #   container_name: medusa-storefront
-  #   depends_on:
-  #     - backend
+  storefront:
+    build:
+      context: ./storefront
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "8000:8000"
+    environment:
+      NODE_ENV: development
 
 volumes:
   app-db-data:
