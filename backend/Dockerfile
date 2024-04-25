@@ -3,7 +3,7 @@ FROM node:18-alpine3.16 as deps
 WORKDIR /app/
 
 #   Copy medusa package.json and yarn.lock from /backend
-COPY ./package.json ./package-lock.json .
+COPY ./package*.json .
 COPY ./yarn.lock? .
 
 #   Install deps

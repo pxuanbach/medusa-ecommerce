@@ -20,7 +20,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.prod
-    # image: backend:test
+    image: pxuanbach/medusa-backend
     depends_on:
       - postgres
       - redis
@@ -41,6 +41,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.admin.prod
+    image: pxuanbach/medusa-backend-admin
     depends_on:
       - postgres
       - redis
@@ -52,6 +53,7 @@ services:
     build:
       context: ./storefront
       dockerfile: Dockerfile.prod
+    image: pxuanbach/medusa-storefront
     depends_on:
       - backend
     ports:
