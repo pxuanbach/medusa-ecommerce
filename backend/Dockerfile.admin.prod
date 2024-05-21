@@ -1,5 +1,5 @@
 ### Build ###
-FROM node:18-alpine3.16 as builder
+FROM node:20-alpine as builder
 WORKDIR /app
 
 ENV NODE_ENV=production

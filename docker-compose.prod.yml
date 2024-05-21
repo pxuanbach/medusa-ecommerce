@@ -48,7 +48,6 @@ services:
     ports:
       - "7001:80"
 
-
   storefront:
     build:
       context: ./storefront
