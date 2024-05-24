@@ -34,3 +34,6 @@ down:
 
 down-v:
 	docker compose down -v
+
+seed:
+	docker compose exec backend yarn seed

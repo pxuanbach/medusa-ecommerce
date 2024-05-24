@@ -50,7 +50,13 @@ const plugins = [
     options: {
       autoRebuild: true,
       develop: {
-        open: process.env.OPEN_BROWSER !== "false",
+        open: false,
+        port: 7001,
+        host: "0.0.0.0",
+        logLevel: "error",
+        stats: "normal",
+        allowedHosts: "auto",
+        webSocketURL: undefined,
       },
     },
   },

@@ -8,11 +8,13 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: medusa
+    restart: always
     volumes:
       - app-db-data:/var/lib/postgresql/data:cached
 
   redis:
     image: redis
+    restart: always
     expose:
       - 6379
 
@@ -36,6 +38,9 @@ services:
     ports:
       - "9000:9000"
       - "7001:7001"
+    command: yarn dev
+    volumes:
+      - ./backend/uploads:/app/uploads
 
   storefront:
     build:
