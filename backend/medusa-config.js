@@ -49,6 +49,7 @@ const plugins = [
     /** @type {import('@medusajs/admin').PluginOptions} */
     options: {
       autoRebuild: true,
+      serve: false,
       develop: {
         open: false,
         port: 7001,

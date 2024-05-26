@@ -2,16 +2,16 @@ build-be:
 	docker build -t pxuanbach/medusa-backend ./backend
 
 build-be-prod:
-	docker build -t pxuanbach/medusa-backend:prod ./backend -f Dockerfile.prod
+	docker build -t pxuanbach/medusa-backend:prod ./backend -f ./backend/Dockerfile.prod
 
 build-ad-prod:
-	docker build -t pxuanbach/medusa-backend-admin:prod ./backend -f Dockerfile.admin.prod
+	docker build -t pxuanbach/medusa-backend-admin:prod ./backend -f ./backend/Dockerfile.admin.prod
 
 build-fe:
 	docker build -t pxuanbach/medusa-storefront ./storefront
 
 build-fe-prod:
-	docker build -t pxuanbach/medusa-storefront:prod ./storefront -f Dockerfile.prod
+	docker build ./storefront -f ./storefront/Dockerfile.prod -t pxuanbach/medusa-storefront:prod
 
 push-fe:
 	docker push pxuanbach/medusa-storefront --all-tags

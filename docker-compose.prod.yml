@@ -20,7 +20,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.prod
-    image: pxuanbach/medusa-backend
+    image: pxuanbach/medusa-backend:prod
     restart: on-failure
     depends_on:
       - postgres
@@ -42,7 +42,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.admin.prod
-    image: pxuanbach/medusa-backend-admin
+    image: pxuanbach/medusa-backend-admin:prod
     restart: on-failure
     depends_on:
       - postgres
@@ -54,7 +54,7 @@ services:
     build:
       context: ./storefront
       dockerfile: Dockerfile.prod
-    image: pxuanbach/medusa-storefront
+    image: pxuanbach/medusa-storefront:prod
     restart: on-failure
     depends_on:
       - backend
