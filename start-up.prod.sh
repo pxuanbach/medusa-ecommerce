@@ -3,6 +3,7 @@
 # Step 1
 # Define service groups
 BACKEND_SERVICE="backend"
+ADMIN_SERVICE="admin"
 STOREFRONT_SERVICE="storefront"
 OTHER_SERVICES="postgres redis"
 BACKEND_PORT=9000
@@ -15,17 +16,17 @@ MAX_RETRIES=$((TIMEOUT / SLEEP_INTERVAL))
 # Step 2.1
 # Build docker images
 echo "Build docker images"
-docker compose -f docker-compose.prod.yml build --no-cache $BACKEND_SERVICE
+docker compose -f docker-compose.prod.yml build --no-cache $BACKEND_SERVICE $ADMIN_SERVICE
 
 # Step 2.2
 # Remove current backend group
-docker compose -f docker-compose.prod.yml down $BACKEND_SERVICE
+docker compose -f docker-compose.prod.yml down $BACKEND_SERVICE $ADMIN_SERVICE
 
 # Step 2.3
 # Start all services in the backend group
 # $1 to pass more options into command
 echo "Run backend groups"
-docker compose -f docker-compose.prod.yml up -d $1 $BACKEND_SERVICE $OTHER_SERVICES
+docker compose -f docker-compose.prod.yml up -d $1 $BACKEND_SERVICE $ADMIN_SERVICE $OTHER_SERVICES
 
 # Step 3.1
 # Wait for the new environment to become healthy
