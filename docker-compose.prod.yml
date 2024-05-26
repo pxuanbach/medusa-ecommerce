@@ -2,17 +2,17 @@ version: "3.8"
 services:
   postgres:
     image: postgres:12
-    ports:
-      - "54322:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: medusa
+    restart: always
     volumes:
       - app-db-data:/var/lib/postgresql/data:cached
 
   redis:
     image: redis
+    restart: always
     expose:
       - 6379
 
@@ -21,13 +21,14 @@ services:
       context: ./backend
       dockerfile: Dockerfile.prod
     image: pxuanbach/medusa-backend
+    restart: on-failure
     depends_on:
       - postgres
       - redis
     environment:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa
-      REDIS_URL: redis://redis
-      NODE_ENV: production
+      REDIS_URL: redis://redis:6379
+      NODE_ENV: development
       JWT_SECRET: some_jwt_secret
       COOKIE_SECRET: some_cookie_secret
       PORT: 9000
@@ -42,6 +43,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile.admin.prod
     image: pxuanbach/medusa-backend-admin
+    restart: on-failure
     depends_on:
       - postgres
       - redis
@@ -53,10 +55,13 @@ services:
       context: ./storefront
       dockerfile: Dockerfile.prod
     image: pxuanbach/medusa-storefront
+    restart: on-failure
     depends_on:
       - backend
     ports:
       - "8000:8000"
+    environment:
+      NODE_ENV: production
       
 volumes:
   app-db-data:

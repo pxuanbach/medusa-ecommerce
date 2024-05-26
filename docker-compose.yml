@@ -27,7 +27,7 @@ services:
       - redis
     environment:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa
-      REDIS_URL: redis://redis
+      REDIS_URL: redis://redis:6379
       NODE_ENV: development
       JWT_SECRET: some_jwt_secret
       COOKIE_SECRET: some_cookie_secret
@@ -40,7 +40,7 @@ services:
       - "7001:7001"
     command: yarn dev
     volumes:
-      - ./backend/uploads:/app/uploads
+      - ./backend/uploads:/app/uploads:cached
 
   storefront:
     build:
