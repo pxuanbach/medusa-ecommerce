@@ -1,3 +1,4 @@
+import { headers } from "next/headers"
 import { Suspense } from "react"
 
 import { listRegions } from "@lib/data"
@@ -22,7 +23,6 @@ export default async function Nav() {
             <LocalizedClientLink
               href="/"
               className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
-              data-testid="nav-store-link"
             >
               Medusa Store
             </LocalizedClientLink>
@@ -35,7 +35,6 @@ export default async function Nav() {
                   className="hover:text-ui-fg-base"
                   href="/search"
                   scroll={false}
-                  data-testid="nav-search-link"
                 >
                   Search
                 </LocalizedClientLink>
@@ -43,7 +42,6 @@ export default async function Nav() {
               <LocalizedClientLink
                 className="hover:text-ui-fg-base"
                 href="/account"
-                data-testid="nav-account-link"
               >
                 Account
               </LocalizedClientLink>
@@ -53,7 +51,6 @@ export default async function Nav() {
                 <LocalizedClientLink
                   className="hover:text-ui-fg-base flex gap-2"
                   href="/cart"
-                  data-testid="nav-cart-link"
                 >
                   Cart (0)
                 </LocalizedClientLink>

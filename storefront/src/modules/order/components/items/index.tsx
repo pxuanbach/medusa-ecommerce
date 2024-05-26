@@ -15,7 +15,7 @@ const Items = ({ items, region }: ItemsProps) => {
     <div className="flex flex-col">
       <Divider className="!mb-0" />
       <Table>
-        <Table.Body data-testid="products-table">
+        <Table.Body>
           {items?.length && region
             ? items
                 .sort((a, b) => {

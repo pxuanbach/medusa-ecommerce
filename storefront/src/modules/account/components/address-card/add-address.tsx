@@ -45,13 +45,12 @@ const AddAddress = ({ region }: { region: Region }) => {
       <button
         className="border border-ui-border-base rounded-rounded p-5 min-h-[220px] h-full w-full flex flex-col justify-between"
         onClick={open}
-        data-testid="add-address-button"
       >
         <span className="text-base-semi">New address</span>
         <Plus />
       </button>
 
-      <Modal isOpen={state} close={close} data-testid="add-address-modal">
+      <Modal isOpen={state} close={close}>
         <Modal.Title>
           <Heading className="mb-2">Add address</Heading>
         </Modal.Title>
@@ -64,34 +63,29 @@ const AddAddress = ({ region }: { region: Region }) => {
                   name="first_name"
                   required
                   autoComplete="given-name"
-                  data-testid="first-name-input"
                 />
                 <Input
                   label="Last name"
                   name="last_name"
                   required
                   autoComplete="family-name"
-                  data-testid="last-name-input"
                 />
               </div>
               <Input
                 label="Company"
                 name="company"
                 autoComplete="organization"
-                data-testid="company-input"
               />
               <Input
                 label="Address"
                 name="address_1"
                 required
                 autoComplete="address-line1"
-                data-testid="address-1-input"
               />
               <Input
                 label="Apartment, suite, etc."
                 name="address_2"
                 autoComplete="address-line2"
-                data-testid="address-2-input"
               />
               <div className="grid grid-cols-[144px_1fr] gap-x-2">
                 <Input
@@ -99,33 +93,29 @@ const AddAddress = ({ region }: { region: Region }) => {
                   name="postal_code"
                   required
                   autoComplete="postal-code"
-                  data-testid="postal-code-input"
                 />
                 <Input
                   label="City"
                   name="city"
                   required
                   autoComplete="locality"
-                  data-testid="city-input"
                 />
               </div>
               <Input
                 label="Province / State"
                 name="province"
                 autoComplete="address-level1"
-                data-testid="state-input"
               />
               <CountrySelect
                 region={region}
                 name="country_code"
                 required
                 autoComplete="country"
-                data-testid="country-select"
               />
-              <Input label="Phone" name="phone" autoComplete="phone" data-testid="phone-input" />
+              <Input label="Phone" name="phone" autoComplete="phone" />
             </div>
             {formState.error && (
-              <div className="text-rose-500 text-small-regular py-2" data-testid="address-error">
+              <div className="text-rose-500 text-small-regular py-2">
                 {formState.error}
               </div>
             )}
@@ -137,11 +127,10 @@ const AddAddress = ({ region }: { region: Region }) => {
                 variant="secondary"
                 onClick={close}
                 className="h-10"
-                data-testid="cancel-button"
               >
                 Cancel
               </Button>
-              <SubmitButton data-testid="save-button">Save</SubmitButton>
+              <SubmitButton>Save</SubmitButton>
             </div>
           </Modal.Footer>
         </form>

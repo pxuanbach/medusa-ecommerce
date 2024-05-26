@@ -81,7 +81,6 @@ const CartDropdown = ({
           <LocalizedClientLink
             className="hover:text-ui-fg-base"
             href="/cart"
-            data-testid="nav-cart-link"
           >{`Cart (${totalItems})`}</LocalizedClientLink>
         </Popover.Button>
         <Transition
@@ -97,7 +96,6 @@ const CartDropdown = ({
           <Popover.Panel
             static
             className="hidden small:block absolute top-[calc(100%+1px)] right-0 bg-white border-x border-b border-gray-200 w-[420px] text-ui-fg-base"
-            data-testid="nav-cart-dropdown"
           >
             <div className="p-4 flex items-center justify-center">
               <h3 className="text-large-semi">Cart</h3>
@@ -113,7 +111,6 @@ const CartDropdown = ({
                       <div
                         className="grid grid-cols-[122px_1fr] gap-x-4"
                         key={item.id}
-                        data-testid="cart-item"
                       >
                         <LocalizedClientLink
                           href={`/products/${item.variant.product.handle}`}
@@ -128,22 +125,12 @@ const CartDropdown = ({
                                 <h3 className="text-base-regular overflow-hidden text-ellipsis">
                                   <LocalizedClientLink
                                     href={`/products/${item.variant.product.handle}`}
-                                    data-testid="product-link"
                                   >
                                     {item.title}
                                   </LocalizedClientLink>
                                 </h3>
-                                <LineItemOptions
-                                  variant={item.variant}
-                                  data-testid="cart-item-variant"
-                                  data-value={item.variant}
-                                />
-                                <span
-                                  data-testid="cart-item-quantity"
-                                  data-value={item.quantity}
-                                >
-                                  Quantity: {item.quantity}
-                                </span>
+                                <LineItemOptions variant={item.variant} />
+                                <span>Quantity: {item.quantity}</span>
                               </div>
                               <div className="flex justify-end">
                                 <LineItemPrice
@@ -154,11 +141,7 @@ const CartDropdown = ({
                               </div>
                             </div>
                           </div>
-                          <DeleteButton
-                            id={item.id}
-                            className="mt-1"
-                            data-testid="cart-item-remove-button"
-                          >
+                          <DeleteButton id={item.id} className="mt-1">
                             Remove
                           </DeleteButton>
                         </div>
@@ -171,11 +154,7 @@ const CartDropdown = ({
                       Subtotal{" "}
                       <span className="font-normal">(excl. taxes)</span>
                     </span>
-                    <span
-                      className="text-large-semi"
-                      data-testid="cart-subtotal"
-                      data-value={cartState.subtotal || 0}
-                    >
+                    <span className="text-large-semi">
                       {formatAmount({
                         amount: cartState.subtotal || 0,
                         region: cartState.region,
@@ -184,11 +163,7 @@ const CartDropdown = ({
                     </span>
                   </div>
                   <LocalizedClientLink href="/cart" passHref>
-                    <Button
-                      className="w-full"
-                      size="large"
-                      data-testid="go-to-cart-button"
-                    >
+                    <Button className="w-full" size="large">
                       Go to cart
                     </Button>
                   </LocalizedClientLink>

@@ -1,3 +1,5 @@
+"use server"
+
 import {
   ProductCategory,
   ProductCollection,
@@ -44,8 +46,6 @@ const getMedusaHeaders = (tags: string[] = []) => {
 
   if (token) {
     headers.authorization = `Bearer ${token}`
-  } else {
-    headers.authorization = ""
   }
 
   return headers

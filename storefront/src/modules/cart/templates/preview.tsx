@@ -22,7 +22,7 @@ const ItemsPreviewTemplate = ({ items, region }: ItemsTemplateProps) => {
       })}
     >
       <Table>
-        <Table.Body data-testid="items-table">
+        <Table.Body>
           {items && region
             ? items
                 .sort((a, b) => {

@@ -64,7 +64,6 @@ const Addresses = ({
             <button
               onClick={handleEdit}
               className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
-              data-testid="edit-address-button"
             >
               Edit
             </button>
@@ -94,8 +93,8 @@ const Addresses = ({
                 <BillingAddress cart={cart} countryCode={countryCode} />
               </div>
             )}
-            <SubmitButton className="mt-6" data-testid="submit-address-button">Continue to delivery</SubmitButton>
-            <ErrorMessage error={message} data-testid="address-error-message" />
+            <SubmitButton className="mt-6">Continue to delivery</SubmitButton>
+            <ErrorMessage error={message} />
           </div>
         </form>
       ) : (
@@ -104,7 +103,7 @@ const Addresses = ({
             {cart && cart.shipping_address ? (
               <div className="flex items-start gap-x-8">
                 <div className="flex items-start gap-x-1 w-full">
-                  <div className="flex flex-col w-1/3" data-testid="shipping-address-summary">
+                  <div className="flex flex-col w-1/3">
                     <Text className="txt-medium-plus text-ui-fg-base mb-1">
                       Shipping Address
                     </Text>
@@ -125,7 +124,7 @@ const Addresses = ({
                     </Text>
                   </div>
 
-                  <div className="flex flex-col w-1/3 " data-testid="shipping-contact-summary">
+                  <div className="flex flex-col w-1/3 ">
                     <Text className="txt-medium-plus text-ui-fg-base mb-1">
                       Contact
                     </Text>
@@ -137,7 +136,7 @@ const Addresses = ({
                     </Text>
                   </div>
 
-                  <div className="flex flex-col w-1/3" data-testid="billing-address-summary">
+                  <div className="flex flex-col w-1/3">
                     <Text className="txt-medium-plus text-ui-fg-base mb-1">
                       Billing Address
                     </Text>

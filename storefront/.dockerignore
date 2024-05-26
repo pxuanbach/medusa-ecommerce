@@ -1,4 +1,5 @@
-node_modules
 .github
-cypress
-e2e
+build
+dist
+node_modules
+.next
