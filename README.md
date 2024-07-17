@@ -1,6 +1,6 @@
 # Medusa E-commerce with Docker
 
-This project aims to demonstrate how to dockerize MedusaJS components. Check out my blog to discover more details. [Dockerize MedusaJS Components](https://immersedincode.io.vn/2024/05/26/dockerize-medusajs-components/)
+This project aims to demonstrate how to dockerize MedusaJS components. Check out my blog to discover more details. [Dockerize MedusaJS Components](https://immersedincode.io.vn/blog/dockerizing-medusajs-for-optimized-deployment/)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M0U28LL)
 
