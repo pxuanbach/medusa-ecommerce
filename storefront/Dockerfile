@@ -1,5 +1,5 @@
 ### Dependencies ###
-FROM node:20-alpine as deps
+FROM node:20-alpine AS deps
 WORKDIR /app/
 
 # Copy storefront package.json and yarn.lock from /storefront
@@ -10,7 +10,7 @@ COPY ./yarn.lock? .
 RUN yarn install --frozen-lockfile
 
 ### Build ###
-FROM node:20-alpine as builder
+FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Copy cached root and package node_modules from deps
@@ -23,4 +23,4 @@ COPY . /app
 RUN yarn build
 
 # Run the builded app
-ENTRYPOINT [ "yarn", "start" ]
+CMD [ "yarn", "start" ]

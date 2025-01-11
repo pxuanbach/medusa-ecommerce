@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   postgres:
     image: postgres:12
@@ -38,17 +37,17 @@ services:
     ports:
       - "9000:9000"
 
-  admin:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile.admin.prod
-    image: pxuanbach/medusa-backend-admin:prod
-    restart: on-failure
-    depends_on:
-      - postgres
-      - redis
-    ports:
-      - "7001:80"
+  # admin:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile.admin.prod
+  #   image: pxuanbach/medusa-backend-admin:prod
+  #   restart: on-failure
+  #   depends_on:
+  #     - postgres
+  #     - redis
+  #   ports:
+  #     - "7001:80"
 
   storefront:
     build:
@@ -59,7 +58,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "8000:8000"
+      - "8000:3000"
     environment:
       NODE_ENV: production
       

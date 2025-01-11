@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   postgres:
     image: postgres:12
@@ -55,3 +54,4 @@ services:
 
 volumes:
   app-db-data:
+  

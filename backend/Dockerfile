@@ -1,5 +1,5 @@
 ### Dependencies ###
-FROM node:20-alpine as deps
+FROM node:20-alpine AS deps
 WORKDIR /app/
 
 # Copy medusa package.json and yarn.lock from /backend
@@ -10,7 +10,7 @@ COPY ./yarn.lock? .
 RUN yarn install --frozen-lockfile
 
 ### Build ###
-FROM node:20-alpine as builder
+FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Copy cached node_modules from deps

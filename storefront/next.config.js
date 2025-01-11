@@ -14,6 +14,7 @@ const nextConfig = withStoreConfig({
   },
   features: store.features,
   reactStrictMode: true,
+  output: 'standalone',
   images: {
     remotePatterns: [
       {
@@ -35,7 +36,5 @@ const nextConfig = withStoreConfig({
     ],
   },
 })
-
-console.log("next.config.js", JSON.stringify(module.exports, null, 2))
 
 module.exports = nextConfig

@@ -1,5 +1,5 @@
 ### Build ###
-FROM node:20-alpine as builder
+FROM node:20-alpine AS builder
 WORKDIR /app
 
 ENV NODE_ENV=production
@@ -10,7 +10,8 @@ COPY ./package*.json .
 COPY ./yarn.lock? .
 
 # Install deps
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile && \ 
+    yarn global add @medusajs/medusa-cli@latest
 
 # Copy app source code
 COPY . /app
@@ -18,7 +19,7 @@ COPY . /app
 RUN yarn build:admin:prod
 
 ### Runner ###
-FROM nginx:1.16.0-alpine as runner
+FROM nginx:1.16.0-alpine AS runner
 
 # Copy nginx.conf from /backend
 COPY admin.nginx.conf /etc/nginx/conf.d/default.conf
@@ -28,7 +29,7 @@ RUN apk add --no-cache bash
 EXPOSE 80 
 
 # Copy static files from Build stage
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/.cache/admin /usr/share/nginx/html
 
 # Image entrypoint
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
